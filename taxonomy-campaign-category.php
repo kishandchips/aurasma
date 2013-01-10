@@ -39,8 +39,12 @@ get_header(); ?>
 			<?php echo get_campaign_labels('campaign-category', 'Category:', 'orderby=count&order=DESC&hide_empty=0', $term->slug); ?>
 			<?php echo get_campaign_labels('region', 'Region:', 'orderby=count&order=DESC&hide_empty=0', $term->slug) ?>
 
+			<?php echo build_campaigns_grid(20); ?>
+			<div id="pagination_links">
+				<?php echo custom_pagination_links(); ?>
+			</div>
 
-			<div class="thumbnails">
+			<!-- <div class="thumbnails">
 
 				<?php 
 					$i = 0;
@@ -77,7 +81,7 @@ get_header(); ?>
 				<?php endwhile; // end of the loop. ?>
 
 			</div>
-
+ -->
 		</section>
 
 	</div>	
