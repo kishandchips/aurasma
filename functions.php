@@ -427,14 +427,16 @@ function get_campaign_labels($taxonomy, $heading, $atts = 'orderby=count&order=D
 	$output .= '<ul class="labels column eighteen">';
 	$labels = '';
 	foreach( $terms as $term ){
+		if($term->count > 0){
 
-		$current_class = ($current == $term->slug) ? ' class="active"' : '';
+			$current_class = ($current == $term->slug) ? ' class="active"' : '';
 
-		$labels .= '<li' . $current_class . '>';
-		$labels .= '<a href="'. get_bloginfo('url') . "/" . $term->taxonomy .'/' . $term->slug . '">';
-		$labels .= '<strong>'. $term->name .'</strong>';
-		$labels .= '</a>';
-		$labels .= '</li>';
+			$labels .= '<li' . $current_class . '>';
+			$labels .= '<a href="'. get_bloginfo('url') . "/" . $term->taxonomy .'/' . $term->slug . '">';
+			$labels .= '<strong>'. $term->name .'</strong>';
+			$labels .= '</a>';
+			$labels .= '</li>';
+		}
 	}
 
 	if( 'Region:' != $heading ){
