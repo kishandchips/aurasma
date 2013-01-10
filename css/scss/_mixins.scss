@@ -1,0 +1,38 @@
+$device_widths: (1000px, 768px, 480px, 320px, 240px, 1200px, 1300px);
+@mixin media($i){
+	@media only screen and (max-width: (nth($device_widths, $i) + 20)){
+		@content;
+	}
+}
+@mixin large-media($i){
+	@media only screen and (min-width: (nth($device_widths, $i) + 20)){
+		@content;
+	}
+}
+@mixin backslash($i, $size: 15px){
+	$backslashes: '';
+	$content: '';
+	@for $i from 1 through $i {
+		$backslashes: "\\" + $backslashes;
+	}
+	@if $i > 0 {
+		$content: $backslashes + "\0000a0";
+	}
+	content: $content;
+	@extend .gotham-book;
+	font-size: $size;
+}
+
+@mixin gt($px){
+	content: "\0000a0\0000a0>";
+	@extend .gotham-medium;
+	font-size: $px + px;
+}
+
+@mixin small-gt($px){
+	content: "\0000a0\0000a0\203A";
+	@extend .gotham-medium;
+	font-size: $px + px;
+}
+
+

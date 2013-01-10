@@ -1,0 +1,107 @@
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+.custom_extras div.row {
+	margin: 0; 
+	padding: 10px 10px 10px 0;
+}
+
+.custom_extras div.hidden {
+	display: none;
+}
+
+.custom_extras div label {
+	display: block;
+	font-weight: bold;
+}
+
+.custom_extras.full-page div label {
+	font-size: 1.5em;
+	font-weight: bold;
+	display: block;
+	margin: 20px 0 10px;
+	width: 100%;
+}
+
+.custom_extras div input[type="text"],
+.custom_extras div textarea {
+	width: 100%;
+	float: none;
+}
+
+.custom_extras label.checkbox {
+	float: left;
+	margin-right: 10px;
+}
+.custom_extras div input[type="checkbox"] {
+	float: left;
+}
+
+.custom_extras .topcontent_left_box,
+.custom_extras .topcontent_right_box {
+	width: 49%;
+}
+.custom_extras .topcontent_left_box {
+	float: left;
+}
+.custom_extras .topcontent_right_box {
+	float: right;
+}
+
+.custom_extras #topcontent_class {
+	float: left;
+}
+
+.custom_extras #topcontent_class_colorsample {
+	width: 20px;
+	height: 20px;
+	margin: 2px 0 0 10px;
+	display: block;
+	float: left;
+}
+#topcontent_class_colorsample.purple {
+	background-color: #d90f81;
+}
+#topcontent_class_colorsample.dark-purple {
+	background-color: #aa5aa3;
+}
+#topcontent_class_colorsample.violet {
+	background-color: #553456;
+}
+#topcontent_class_colorsample.blue {
+	background-color: #20c4f4;
+}
+#topcontent_class_colorsample.red {
+	background-color: #9c4a86;
+}
+
+
+.wp_themeSkin .mceStatusbar a.mceResize {
+	top: 0 !important;
+	margin: 0 !important;
+}
+
+.wp_themeSkin .mceIframeContainer {
+	background: #FFF;
+}
+
+.wp-editor-area, .quicktags-toolbar input.ed_button {
+	display: inline-block;
+}
+
+
+
+
+
