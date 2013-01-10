@@ -23,7 +23,7 @@ if ( ! function_exists( 'aurasma_setup' ) ):
  * @since aurasma 1.0
  */
 function aurasma_setup() {
-
+	global $wp_query;
 	require( get_template_directory() . '/inc/post_types.php' );
 
 	require( get_template_directory() . '/inc/metaboxes.php' );
@@ -436,7 +436,7 @@ function get_campaign_labels($taxonomy, $heading, $atts = 'orderby=count&order=D
 			$labels .= '<strong>'. $term->name .'</strong>';
 			$labels .= '</a>';
 			$labels .= '</li>';
-		}
+		}	
 	}
 
 	if( 'Region:' != $heading ){
@@ -833,7 +833,7 @@ function build_campaigns_grid( $campaigns_posts_per_page = 21 ) {
 	endwhile; 
 
 	$output .= '</div>';
-	wp_reset_query();
+	//wp_reset_query();
 	return $output;
 
 
