@@ -22,9 +22,12 @@
 	<link href="<?php bloginfo( 'template_url' ); ?>/css/ipadP.css" rel="stylesheet" media="only screen and (device-width:  768px) and (orientation: portrait)">
 	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 	
-	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/style-ie.css" />
-	<script src="<?php bloginfo( 'template_url' ); ?>/js/plugins/html5shiv.js"></script><![endif]-->
-	<!--[if (gt IE 8)|!(IE)]><!--><link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/style.css" /><!--<![endif]-->
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/ie.css" />
+		<script src="<?php bloginfo( 'template_url' ); ?>/js/plugins/html5shiv.js"></script>
+	<![endif]-->
+	
+	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/style.css" />
 	<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" />
     
     
@@ -46,7 +49,6 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="<?php bloginfo( 'template_url' ); ?>/js/libs/jquery.1.8.2.min.js"><\/script>')</script>
 	<script type="text/javascript" src="<?php bloginfo( 'template_url' ); ?>/js/plugins/jquery.plugins.js"></script>
-	<script src="<?php bloginfo( 'template_url' ); ?>/js/libs/css_browser_selector.js" type="text/javascript"></script>
 <?php 
 	wp_head(); 
 	global $wp_query;

@@ -1,10 +1,3 @@
-function isiPhone(){
-    return (
-        (navigator.platform.indexOf("iPhone") != -1) ||
-        (navigator.platform.indexOf("iPod") != -1)
-    );
-}
-if(!isiPhone()){
 (function( $ ){
 
     var data = {
@@ -31,18 +24,18 @@ if(!isiPhone()){
                     e.preventDefault();
                     data.methods.goto($(this).attr('data-id'));
                 });
-
-                $(window).mousewheel(function(e, delta){
-                    e.preventDefault();
-                    if(!data.isScrolling && data.canScroll){
-                        if ( delta > 0 ) {
-                            data.methods.gotoPrev();
-                        } else if ( delta < 0 ) {
-                            data.methods.gotoNext();
+                if(!Modernizr.touch){
+                    $(window).mousewheel(function(e, delta){
+                        e.preventDefault();
+                        if(!data.isScrolling && data.canScroll){
+                            if ( delta > 0 ) {
+                                data.methods.gotoPrev();
+                            } else if ( delta < 0 ) {
+                                data.methods.gotoNext();
+                            }
                         }
-                    }
-                });
-
+                    });
+                }
                 
                 // data.slider.hover(function(){
                 //     data.canAutoScroll = false;
@@ -90,18 +83,22 @@ if(!isiPhone()){
                 }
                 
                 data.methods.setSlides();
-                $(window).load(function(){
-                    data.snapInterval = setInterval(data.methods.snap, 500);
-                    data.autoScrollInterval = setInterval(data.methods.autoScroll, 8000);
+                if(!Modernizr.touch){
+                    $(window).load(function(){
+                        data.snapInterval = setInterval(data.methods.snap, 500);
+                        data.autoScrollInterval = setInterval(data.methods.autoScroll, 8000);
 
-                    data.methods.goto(data.currId);
-                    data.methods.setSlides();
-                    data.firstLoad = false;
-                });
-
+                        data.methods.goto(data.currId);
+                        data.methods.setSlides();
+                        data.firstLoad = false;
+                    });
+                }
                 $(window).resize(function(){
                     data.methods.setSlides();
                 });
+                if(!Modernizr.touch){
+                    $('.slide-navigation').show();
+                }
             },
             goto: function(id){
                 var speed = 1000,
@@ -341,5 +338,3 @@ if(!isiPhone()){
     };
  
 })();
-
-}

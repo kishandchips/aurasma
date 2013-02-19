@@ -21,10 +21,7 @@ get_header(); ?>
 <section id="top-content" class="red-border">
 	<div class="container">
 
-		<?php 
-			echo do_shortcode(get_post_meta($page_id, 'topcontent_left', true)); 
-			echo do_shortcode(get_post_meta($page_id, 'topcontent_right', true)); 
-		?>
+		<?php aurasma_content_top($page_id); ?>
 
 	</div>
 </section>

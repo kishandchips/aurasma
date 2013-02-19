@@ -193,12 +193,20 @@ body {
 
 	.container {
 
+		.column {
+			font-size:95%;
+		}
+
+		.push-one {
+			margin-left: 1.7%;
+		}
+
 		div {
 			font-size: 1.15em;
 		}
 
 		small {
-			font-size: 0.8125em;
+			font-size: 0.9em;
 			display: block;
 			margin-top: 25px;
 			font-family: Arial, Helvetica, Sans-serif;
@@ -230,7 +238,7 @@ body {
 			@extend .medium-small;
 			margin-top: 18px;
 			padding: 0;
-			font-size: 0.8em;
+			font-size: 0.9em;
 		}
 		ul li {
 			float: left;
@@ -267,9 +275,25 @@ body {
 		input.button  {
 			left: 18.3em;
 		}
-
 	}
 
+	.footer-bottom {
+		padding-bottom: 9px;
+
+		.column {
+			font-size: 110% !important;
+
+			#menu-footer-navigation {			
+				margin: 25px 0 0 0;
+			}				
+		}
+	}	
+}
+
+
+
+.smartphone {
+	height: 2.614em !important;
 }
 
 
@@ -436,11 +460,13 @@ body {
 			top: 0;
 			padding: 0;
 			margin: 0;
+			width: 20000px;
 
 			li {
 				float: left; 
 				margin: 0 20px 1em 0;
 				list-style: none;
+				position: relative;
 
 				@include media(6){
 					margin: 0 15px 1em 0;
@@ -459,6 +485,21 @@ body {
 						@include box-shadow(#000 0 2px 3px, inset 0 1px 2px #fff);	
 					}
 				}
+
+				a:before {
+					content: " ";
+					background: url(../images/single_campaign_hover_176x176.png) no-repeat center center;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					@include opacity(0);
+				}
+
+				a:hover {
+					&:before {
+						@include opacity(1);
+					}
+				}				
 			}
 		} 
 	}
@@ -506,6 +547,7 @@ body {
 div.thumbnails {
 
 	margin-top: 0;
+	position: relative;
 
 	div.post {
 		margin-bottom: 1.5em;
@@ -518,7 +560,7 @@ div.thumbnails {
 			background: url(../images/icon_corner.png) no-repeat 0 0;
 			position: absolute;
 			top: 0;
-			left: 0;
+			right: 0;
 			text-indent: -999em;
 		}
 
@@ -529,10 +571,14 @@ div.thumbnails {
 			width: 12.5em;
 			background: white;
 			@include box-shadow(#666 0 2px 3px);	
-			@include transition(all 0.3s ease-in-out);
+			// @include transition(all 0.3s ease-in-out);
 
-			&:hover, &.selected {
-				@include scale( 1.1, 1.1 );
+			// &:hover, &.selected {
+			// 	@include scale( 1.1, 1.1 );
+			// }
+
+			@include media(2) {
+				width:90%;
 			}
 
 		}
@@ -627,7 +673,7 @@ div.find-out {
 	}
 
 	#footer {
-		position: absolute;
+		position: fixed;
 		bottom: 0;
 	}
 
@@ -661,12 +707,14 @@ div.find-out {
 					position: absolute;
 					left: 50%;
 					top: 50%;
-					width: 280px;
+					width: 310px;
 					//height: 200px;
-					margin: -150px 0 0 -154px;
+					margin: -170px 0 0 -154px;
 					//@include text-shadow(0 2px 0 #333, -1px 0 2px #000);
 					@extend .white;
 					text-align: center;
+
+					a { color:#fff;}
 
 					h3 {
 
@@ -674,6 +722,7 @@ div.find-out {
 						font-size: 2.125em;
 						line-height: 100%;
 						@extend .gotham-book;
+						padding: 0.625em 1.250em;
 
 					}
 
@@ -706,8 +755,7 @@ div.find-out {
 					z-index: 4000;
 				}
 
-			}
-
+			}		
 		}
 
 		#left-navigation {
@@ -850,7 +898,7 @@ div.find-out {
 				margin-left: -15px;
 			}
 			h3:before {
-				@include backslash(1, 25px);
+				@include backslash(1, 22px);
 				@extend .blue;
 			}
 			h4 {
@@ -858,9 +906,7 @@ div.find-out {
 				@extend .dark-grey;
 				@extend .gotham-medium;
 			}
-			h4.step:before {
-				@include backslash(1);
-			}
+
 			h5 {
 				color: #9c499c;
 				@extend .gotham-book;
@@ -909,6 +955,10 @@ div.find-out {
 
 	#main {
 		padding-top: 0;
+
+		@include media(1) {
+			padding: 0 5%;			
+		}
 	}
 	
 	#top-content {
@@ -925,8 +975,6 @@ div.find-out {
 	}
 
 	div.thumbnails {
-
-		@extend .container;
 
 		div.row {
 			float: none;
@@ -955,6 +1003,10 @@ div.find-out {
 						max-width: 120px;
 						height: auto;
 					}
+
+					@include media(2) {
+						max-width: 90%;
+					}
 				}
 			}
 
@@ -978,21 +1030,15 @@ div.find-out {
 			position: absolute;
 			right: 0;
 			margin-top: -14em;
+			color: #fff;
 
-			h4 {
-				font-size: 2.5em;
-				line-height: 95%;
-				@extend .gotham-light;
-				@extend .white;
+			@include media(2) {
+				width: 39%;
 			}
 
 			p {
-				font-size: 1.571em;
-				line-height: 120%;
-				letter-spacing: -1px;
-				margin-bottom: 30px;
-				@extend .gotham-book;
-				@extend .white;
+				font-size: 1.2em;
+				margin-bottom: 20px;
 			}
 		}
 	}
@@ -1000,6 +1046,10 @@ div.find-out {
 
 		width: 68.57142857142857em;
 		margin: 0 auto;
+
+		@include media(1) {
+			width: 100%;
+		}
 
 		h3 {
 			margin: 45px 0 20px;
@@ -1194,7 +1244,7 @@ div.find-out {
 					line-height: 100%;
 					font-size: 3.214em;
 					margin: 0;
-					max-width: 60%;
+					max-width: 91%;
 					@extend .white;
 
 					a {
@@ -1262,6 +1312,7 @@ div.find-out {
 			.post-text {
 
 				padding: 19px 60px 50px 29px;
+				line-height: 1.5em;
 
 				p {
 					margin: 10px 0;
@@ -1363,6 +1414,10 @@ div.find-out {
 
 	}
 
+	.newsletter input[type="submit"] {
+		left: 20em;
+}
+
 }
 
 #campaigns, .single-campaign {
@@ -1379,7 +1434,7 @@ div.find-out {
 
 	#slider {
 		background: url(../images/bg_slider.png) repeat-x top left;
-		@extend .green-border;
+		@extend .mid-purple-border;
 
 		h2 {
 			@extend .gotham-book;
@@ -1415,7 +1470,7 @@ div.find-out {
 
 			&:before {
 				@include backslash(1);
-				@extend .green;
+				@extend .plum;
 			}
 		}
 		div.thumbnails {
@@ -1426,6 +1481,21 @@ div.find-out {
 					@include media(7){
 						max-width: 100%;
 						height: auto;
+					}
+					
+				}
+
+				a:before {
+					content: " ";
+					background: url(../images/single_campaign_hover_176x176.png) no-repeat center center;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+				}
+
+				a:hover {
+					&:before {
+						@include opacity(1);
 					}
 				}
 			}
@@ -1631,7 +1701,7 @@ div.find-out {
 		@extend .violet;
 
 		&:before {
-			@include backslash(1, 28px);
+			@include backslash(1, 26px);
 			@extend .dark-purple;
 		}
 
@@ -1839,5 +1909,10 @@ body#news.single-campaign {
 #partners-faqs #menu-item-129 a {
 	@extend .purple;
 }
+
+
+
+
+
 
 

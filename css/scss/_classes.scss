@@ -303,6 +303,11 @@ a.light-grey:hover {
 .blue {
 	color: #20c4f4;	
 }
+
+.mid-blue {
+	color: #006090;
+}
+
 .light-blue {
 	color: #1db2de;
 }
@@ -327,6 +332,11 @@ a.plum:hover {
 .green {
 	color: #0d9f75;
 }
+
+.mid-green {
+	color: #93C83D;
+}
+
 .emerald {
 	color: #30b996;
 }
@@ -360,6 +370,148 @@ a.violet:hover {
 	z-index: 100;
 	line-height: 0.97em;
 }
+
+/* =============================================================================
+   Gravity
+   ========================================================================== */
+
+form {
+
+	.gform_body {
+
+		ul {
+			list-style: none;
+			padding: 0;
+		}
+	}
+
+	.gform_heading {
+
+		h3:before {
+			content: "\\ ";
+	    	font-size: 28px;
+	    	color: #AA5AA3;
+		}
+
+		h3 {
+			font-size: 2.5em;
+			color: #723686;
+		}
+
+		.gform_description {
+			@extend .gotham-book;
+			font-weight: bold;
+			font-size: 1.142em;
+		}
+	}		
+
+	div {
+
+		margin-bottom: 10px;
+
+		label {
+			@extend .gotham-medium;
+			cursor: pointer;
+		}
+
+		input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+			@extend .gotham-book;
+			border: 1px solid #818181;
+			@include border-radius(3px);
+		}
+
+		input[type="tel"] {
+			width: 42.3% !important;
+		}
+
+		select {
+		    padding: 8px 6px;
+		    width: 43.8542%;			
+		}
+
+		input[type="text"], input[type="email"], input[type="tel"]  {
+			@extend .nine.column;
+		}
+
+		input[type="submit"] {
+			@extend .button;
+			float: left;
+		}
+
+	}
+
+}
+
+
+// .gform_wrapper {
+
+// 	.gform_heading {
+// 		margin: 10px 0;
+// 	}
+
+// 	.validation_error {
+// 		color: #a40000;
+// 	}
+
+// 	.gform_body {
+// 		margin: 20px 0;
+// 		font-family: Arial, Helvetica, sans-serif;
+
+// 		font-size: 0.785em;
+
+// 		.gform_fields {
+// 			margin: 0;
+// 			padding: 0 !important;
+// 			list-style: none;
+
+// 			.gfield {
+
+// 				padding-left: 0 !important;
+
+// 				.gfield_label {
+// 					.gfield_required {
+// 						color: #a40000;
+// 						padding: 0 0 0 5px;
+// 					}
+// 				}
+
+// 				.gfield_description {
+// 					font-size: 0.9em;
+// 				 	font-style: italic;
+
+// 					&.validation_message {
+// 						color: #a40000;
+// 					}
+// 				}
+
+// 				.ginput_container {
+// 					input,
+// 					textarea {
+// 						border: 1px solid #dedede;
+// 					}
+// 				}		
+// 			}
+// 		}
+// 	}
+
+// 	.gform_footer {
+// 		.button {
+// 			background: #a40000;
+// 			width: 50%;
+// 			margin: 0 auto;
+// 			height: 28px;
+// 			line-height: 28px;
+// 			border: 1px solid #dedede;
+// 			display: block;
+// 			padding: 0;
+// 			font-size: 0.785em;
+
+// 			&:hover {
+// 				background: #790000;
+// 			}
+// 		}
+// 	}
+// }
 
 
 /* =============================================================================
@@ -504,11 +656,16 @@ hr {
 .purple-border {
 	border-bottom: 3px solid #d90f81;
 }
+
+.mid-purple-border {
+	border-bottom: 3px solid #723686 !important;
+}
+
 .dark-purple-border {
 	border-bottom: 3px solid #aa5aa3;
 }
 .violet-border {
-	border-bottom: 3px solid #553456;
+	border-bottom: 3px solid #553456 !important;
 }
 
 .blue-border {
@@ -750,7 +907,7 @@ blockquote {
 		font-size: 0.875em;
 		color: #a7a7a7;
 		height: 32px;
-		@include border-radius(0);
+		border-radius: 0 !important;
 	}
 
 	input[type="email"], input[type="text"] {
@@ -761,6 +918,7 @@ blockquote {
 		@extend .gotham-medium;
 	}
 	input[type="submit"] {		
+		font-size: 0.875em;
 		background: #e4e4e4;
 		border: 1px solid #c2bdbd;
 		@include box-shadow(0 1px 0 #707171, inset 0 0 5px #fff);
@@ -768,12 +926,13 @@ blockquote {
 		padding: 0 10px;
 		top: 4px;
 		height: 31px;
-		left: 19.9em;
+		left: 12.5em;
 		margin: 0;
 		color: #555555;
 		@extend .gotham-medium;
 	}
 }
+
 /* =============================================================================
    Widgets
    ========================================================================== */
@@ -797,8 +956,8 @@ blockquote {
 	display: block;
 	float: left;
 	margin-right: 5px;
-	width: 2.28em;
-	height: 2.28em;
+	width: 2.68em;
+	height: 2.68em;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -1086,26 +1245,13 @@ $column_margin: 1.04166666666667%;
 
 
 
-// @include media(1) {
-// 	.container {
-// 		width: auto;
-// 	}
-// 	@include columns(100% / $total_columns);
-// }
-
-
-// @include media(2) {
-// 	.container {
-// 		width: auto;
-// 	}
-	
-// 	.column {
-// 		padding-left: 0;
-// 		padding-right: 0;
-// 	}
-
-// 	@include columns(auto);
-// }
+@include media(1) {
+	.container {
+		width: 90%;
+		padding: 0 5%;
+	}
+	@include columns(60% / $total_columns);
+}
 
 
 .left, .alignleft {
@@ -1158,6 +1304,7 @@ label.error {
 input[type=text],
 input[type=email],
 input[type=password],
+input[type=tel],
 textarea {
 	background: #FFF;
 	padding: 8px 6px;
@@ -1205,79 +1352,4 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 	border: none !important;
 	outline: none !important;
 }
-
-
-/* =============================================================================
-   Gravity
-   ========================================================================== */
-
-// .gform_wrapper {
-
-// 	.gform_heading {
-// 		margin: 10px 0;
-// 	}
-
-// 	.validation_error {
-// 		color: #a40000;
-// 	}
-
-// 	.gform_body {
-// 		margin: 20px 0;
-// 		font-family: Arial, Helvetica, sans-serif;
-
-// 		font-size: 0.785em;
-
-// 		.gform_fields {
-// 			margin: 0;
-// 			padding: 0 !important;
-// 			list-style: none;
-
-// 			.gfield {
-
-// 				padding-left: 0 !important;
-
-// 				.gfield_label {
-// 					.gfield_required {
-// 						color: #a40000;
-// 						padding: 0 0 0 5px;
-// 					}
-// 				}
-
-// 				.gfield_description {
-// 					font-size: 0.9em;
-// 				 	font-style: italic;
-
-// 					&.validation_message {
-// 						color: #a40000;
-// 					}
-// 				}
-
-// 				.ginput_container {
-// 					input,
-// 					textarea {
-// 						border: 1px solid #dedede;
-// 					}
-// 				}		
-// 			}
-// 		}
-// 	}
-
-// 	.gform_footer {
-// 		.button {
-// 			background: #a40000;
-// 			width: 50%;
-// 			margin: 0 auto;
-// 			height: 28px;
-// 			line-height: 28px;
-// 			border: 1px solid #dedede;
-// 			display: block;
-// 			padding: 0;
-// 			font-size: 0.785em;
-
-// 			&:hover {
-// 				background: #790000;
-// 			}
-// 		}
-// 	}
-// }
 

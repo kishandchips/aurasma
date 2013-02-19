@@ -34,7 +34,7 @@ $(function(){
 	}	    
 
 	// smooth scroll for hash links
-	$('a[href^=#]').not('.load-more, .no-click').click(function(){
+	$('a[href^=#].scroll-to-btn').click(function(){
 		var target = $($(this).attr('href'));
 		var offsetTop = (target.length != 0) ? target.offset().top : 0;
 		$('html, body').animate({scrollTop: offsetTop}, 500);
@@ -100,14 +100,14 @@ $(function(){
 	// closes lightbox on overlay and close-button click
 
 	$('.lightbox-overlay, .lightbox .close-button').live('click', function(e){
-		window.location.hash = '';
-		$('.lightbox').fadeOut(function(){
+		if($('.lightbox').html() != ''){
+			window.location.hash = '';
+			$('.lightbox').fadeOut(function(){
+				$('.lightbox-overlay').fadeOut('slow');	
+				$('.lightbox').html('');
 
-			$('.lightbox-overlay').fadeOut('slow');	
-			$('.lightbox').html('');
-
-		});						 
-
+			});						 	
+		}
 	});
 
 

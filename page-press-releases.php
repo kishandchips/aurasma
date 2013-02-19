@@ -6,10 +6,7 @@
 <section id="top-content">
 	<div class="container">
 
-		<?php 
-			echo do_shortcode(get_post_meta($page_id, 'topcontent_left', true)); 
-			echo do_shortcode(get_post_meta($page_id, 'topcontent_right', true)); 
-		?>
+		<?php aurasma_content_top($page_id); ?>
 
 	</div>
 </section>

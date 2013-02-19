@@ -66,11 +66,13 @@ function aurasma_setup() {
 		add_image_size( 'custom_thumbnail', 176, 176, false);
 		add_image_size( 'news_post_image', 666, 9999, false);
 	}
-
 }
 endif; // aurasma_setup
 add_action( 'after_setup_theme', 'aurasma_setup' );
 
+
+
+add_editor_style( 'css/editor-styles.css' );
 
 
 /**
@@ -285,11 +287,12 @@ function aurasma_content_top( $page_id ) {
 
 	<section id="top-content" class="<?php echo get_post_meta($page_id, 'topcontent_class', true) ?>-border">
 		<div class="container">
-
-			<?php echo do_shortcode(get_post_meta($page_id, 'topcontent_left', true)); ?>
-
-			<?php echo do_shortcode(get_post_meta($page_id, 'topcontent_right', true)); ?>
-
+			<div class="twelve column alpha">
+				<?php echo do_shortcode(get_post_meta($page_id, 'topcontent_left', true)); ?>
+			</div>
+			<div class="box">
+				<?php echo do_shortcode(get_post_meta($page_id, 'topcontent_right', true)); ?>
+			</box>
 		</div>
 	</section>
 
@@ -781,7 +784,7 @@ function build_campaign_slider(){
 }
 
 
-function build_campaigns_grid( $campaigns_posts_per_page = 21 ) {
+function build_campaigns_grid( $campaigns_posts_per_page = 20 ) {
 
 	global $wp_query;
 
