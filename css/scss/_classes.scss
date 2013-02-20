@@ -168,6 +168,14 @@ h6 {
 p {
 	margin: 20px 0;
 	line-height: 1.428em;
+
+	a {
+		text-decoration: underline;
+
+		&:hover {
+			color: #800080;
+		}
+	}
 }
 
 .huge {

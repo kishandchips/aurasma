@@ -5,12 +5,16 @@ html {
 	@include media(6) {
 		font-size: 12px;
 	}
-}
+} 
 
 body {
 	background: url(../images/bg_footer.png);
 	@include media(7) {
 		font-size: 90%;
+	}
+
+	.win  & * { 
+		font-family: 'Verdana';
 	}
 }
 
@@ -26,6 +30,8 @@ body {
 	position: relative;
 	z-index: 1000;
 	width: 100%;
+
+
 
 	@include transition-property(all);
 	@include transition-duration(0.5s);
@@ -44,6 +50,15 @@ body {
 		padding: 15px 0 0 0;
 
 		@extend .gotham-book;
+
+		.win & {
+			font-family: 'Verdana';
+			font-weight: normal;
+		}
+		.win.chrome & {
+			margin-right: 20px;
+			font-weight: normal;
+		}
 		
 		> ul {
 
@@ -129,6 +144,10 @@ body {
 			border-right: none;
 			border-left: none;
 			border-top: none;
+
+			.win & {
+				font-family: 'Verdana';
+			}
 		}
 
 		input[type=submit] {
@@ -178,7 +197,11 @@ body {
 
 }
 		
-#sidebar {}
+#sidebar {
+	a {
+		@extend .gothamBook;
+	}
+}
 
 	
 #footer {
@@ -714,6 +737,10 @@ div.find-out {
 					@extend .white;
 					text-align: center;
 
+					.win.chrome {
+						width: 350px;
+					}
+
 					a { color:#fff;}
 
 					h3 {
@@ -951,6 +978,10 @@ div.find-out {
 
 	.load-more {
 		@extend .push-six;
+
+		.win.chrome {
+			margin-left: 30%;
+		}
 	}
 
 	#main {

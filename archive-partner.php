@@ -14,16 +14,7 @@ get_header(); ?>
 <?php $page_id = '113'; ?>
 
 <div id="archive-partner">
-	<section id="top-content" class="<?php echo(get_post_meta($page_id, 'topcontent_class', true)) ?>-border">
-		<div class="container">
-
-			<?php 
-				echo do_shortcode(get_post_meta($page_id, 'topcontent_left', true)); 
-				echo do_shortcode(get_post_meta($page_id, 'topcontent_right', true)); 
-			?>
-
-		</div>
-	</section>
+	<?php aurasma_content_top($page_id); ?>
 
 	<div id="main" class="site-main">
 		<div class="clearfix">

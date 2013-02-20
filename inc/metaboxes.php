@@ -95,6 +95,9 @@ function partner_meta_options(){
 	$case_study_url = $custom["case_study_url"][0];
 	$youtube_video_id = $custom["youtube_video_id"][0];
 	$has_casestudy_checked = (($custom["has_casestudy"][0]) ? 'checked="checked"' : '');
+	$show_case_study_url = isset($custom['show_case_study_url']) ? $custom["show_case_study_url"][0] : 'on';
+	$show_external_url = isset($custom['show_external_url']) ? $custom["show_external_url"][0] : 'on';
+	$show_youtube_video_id = isset($custom['show_youtube_video_id']) ? $custom["show_youtube_video_id"][0] : 'on';
 	
 ?>
 
@@ -103,6 +106,9 @@ function partner_meta_options(){
 
 <?php
 	$case_study_url = ($case_study_url == "") ? "http://" : $case_study_url;
+	$show_case_study_url_checked = (($show_case_study_url) ? 'checked="checked"' : '');
+	$show_external_url_checked = (($show_external_url) ? 'checked="checked"' : '');
+	$show_youtube_video_id_checked = (($show_youtube_video_id) ? 'checked="checked"' : '');
 ?>
 
 	<div class="row clearfix">
@@ -111,16 +117,16 @@ function partner_meta_options(){
 	</div>
 	<div <?php if($has_casestudy_checked == ''): ?>class="hidden"<?php endif; ?>>
 		<div class="row casestudy ">
-			<label for="case_study_url">Insert PDF Download Link:</label>
+			<label for="case_study_url">PDF Download Link: <input type="checkbox" name="show_case_study_url" title="Show PDF Link" <?php echo $show_case_study_url; ?> /></label>
 			<input id="case_study_url" name="case_study_url" type="text" value="<?php echo $case_study_url; ?>" />
 		</div>
 		<div class="row">
-			<label for="external_url">Insert External URL:</label>
+			<label for="external_url">External URL: <input type="checkbox" name="show_external_url" title="Show External Url" <?php echo $show_external_url; ?> /></label>
 			<input id="external_url" name="external_url" type="text" value="<?php echo $external_url; ?>" />
 		</div>
 		<div class="row">
-			<label for="youtube_video_id">Video/Image embed code:</label>
-			<textarea id="youtube_video_id" name="youtube_video_id"><?php echo $youtube_video_id; ?></textarea>
+			<label for="youtube_video_id">Video/Image embed code: <input type="checkbox" name="show_youtube_video_id" title="Show Video/Image" <?php echo $show_youtube_video_id; ?> /></label>
+			<textarea id="youtube_video_id" name="youtube_video_id"><?php echo $youtube_video_id; ?></textarea><br />
 			<em>Maximum width: 617 px - Maximum height: 378 px</em>
 		</div>
 	</div>
@@ -156,6 +162,14 @@ function partner_save_extras(){
 		update_post_meta($post->ID, "external_url", $_POST["external_url"]);
 		update_post_meta($post->ID, "case_study_url", $_POST["case_study_url"]);
 		update_post_meta($post->ID, "youtube_video_id", $_POST["youtube_video_id"]);
+
+		if($_POST["show_case_study_url"]) { $show_case_study_url = 'on'; } else { $show_case_study_url = ''; };
+		update_post_meta($post->ID, "show_case_study_url", $show_case_study_url);
+
+		if($_POST["show_external_url"]) { $show_external_url = 'on'; } else { $show_external_url = ''; };
+		update_post_meta($post->ID, "show_external_url", $show_external_url);
+		if($_POST["show_youtube_video_id"]) { $show_youtube_video_id = 'on'; } else { $show_youtube_video_id = ''; };
+		update_post_meta($post->ID, "show_youtube_video_id", $show_youtube_video_id);
 	}
 }
 
@@ -210,28 +224,10 @@ function campaign_meta_options(){
 	$channel = isset($custom["channel"][0]) ? $custom["channel"][0] : '';
 	$website_url = isset($custom["website_url"][0]) ? $custom["website_url"][0] : '';
 	$is_latest = $custom["is_latest"][0];
-	$show_vid = $custom["show_vid"][0];
-	$show_links = $custom["show_links"][0];
-	$link1 = isset($custom["link1"][0]) ? $custom["link1"][0] : '';
-	$link2 = isset($custom["link2"][0]) ? $custom["link2"][0] : '';
-	$link3 = isset($custom["link3"][0]) ? $custom["link3"][0] : '';
-	$link4 = isset($custom["link4"][0]) ? $custom["link4"][0] : '';
-	$link5 = isset($custom["link5"][0]) ? $custom["link5"][0] : '';
-	$link6 = isset($custom["link6"][0]) ? $custom["link6"][0] : '';
-	$link7 = isset($custom["link7"][0]) ? $custom["link7"][0] : '';
-	$link8 = isset($custom["link8"][0]) ? $custom["link8"][0] : '';
-	$link9 = isset($custom["link9"][0]) ? $custom["link9"][0] : '';
-	$link10 = isset($custom["link10"][0]) ? $custom["link10"][0] : '';
-	$linktitle1 = isset($custom["linktitle1"][0]) ? $custom["linktitle1"][0] : '';
-	$linktitle2 = isset($custom["linktitle2"][0]) ? $custom["linktitle2"][0] : '';
-	$linktitle3 = isset($custom["linktitle3"][0]) ? $custom["linktitle3"][0] : '';
-	$linktitle4 = isset($custom["linktitle4"][0]) ? $custom["linktitle4"][0] : '';
-	$linktitle5 = isset($custom["linktitle5"][0]) ? $custom["linktitle5"][0] : '';
-	$linktitle6 = isset($custom["linktitle6"][0]) ? $custom["linktitle6"][0] : '';
-	$linktitle7 = isset($custom["linktitle7"][0]) ? $custom["linktitle7"][0] : '';
-	$linktitle8 = isset($custom["linktitle8"][0]) ? $custom["linktitle8"][0] : '';
-	$linktitle9 = isset($custom["linktitle9"][0]) ? $custom["linktitle9"][0] : '';
-	$linktitle10 = isset($custom["linktitle10"][0]) ? $custom["linktitle10"][0] : '';
+	$show_release_date = isset($custom["show_release_date"][0]) ? $custom["show_release_date"][0] : 'on';
+	$show_vid = isset($custom['show_vid']) ? $custom["show_vid"][0] : 'on';
+	$show_channel = isset($custom['show_channel']) ? $custom["show_channel"][0] : 'on';
+	$show_links = isset($custom['show_links']) ? $custom["show_links"][0] : 'on';
 		
 ?>
 
@@ -241,29 +237,26 @@ function campaign_meta_options(){
 <?php
 	$website_url = ($website_url == "") ? "http://" : $website_url;
 	$is_latest_checked = (($is_latest) ? 'checked="checked"' : '');
+	$show_release_date_checked = (($show_release_date) ? 'checked="checked"' : '');
 	$show_vid_checked = (($show_vid) ? 'checked="checked"' : '');
+	$show_channel_checked = (($show_vid) ? 'checked="checked"' : '');
 	$show_links_checked = (($show_links) ? 'checked="checked"' : '');
 
 ?>
 
 	<div class="row">
-		<label for="release_date">Release date:</label>
+		<label for="release_date">Release date: <input type="checkbox" name="show_release_date" title="Show Release Date" <?php echo $show_release_date_checked; ?> /></label>
 		<input type="text" id="release_date"name="release_date" value="<?php echo $release_date; ?>" />
 	</div>
 	
 	<div class="row">
-		<label for="channel">Channel (Follow this Aura):</label>
+		<label for="channel">Channel (Follow this Aura): <input type="checkbox" name="show_channel" title="Show Channel" <?php echo $show_channel_checked; ?> /></label>
 		<input type="text" id="channel" name="channel" value="<?php echo $channel; ?>" />
 	</div>
 
 	<div class="row">
-		<label for="website_url">Video URL:</label>
+		<label for="website_url">Video URL: <input type="checkbox" name="show_vid" title="Show Video" <?php echo $show_vid_checked; ?> /></label>
 		<input type="text" id="website_url" name="website_url" value="<?php echo $website_url; ?>" />
-	</div>
-	
-	<div class="row clearfix">
-		<label for="show_vid" class="checkbox">Show Video?:</label>
-		<input type="checkbox" id="show_vid" name="show_vid" <?php echo $show_vid_checked; ?> />
 	</div>
 	
 	<div class="row clearfix">
@@ -271,93 +264,11 @@ function campaign_meta_options(){
 		<input type="checkbox" id="is_latest" name="is_latest" <?php echo $is_latest_checked; ?> />
 	</div>
 	
-	<hr/>
-	
 	<div class="row clearfix">
 		<label for="show_links" class="checkbox">Show Further Coverage Links?:</label>
 		<input type="checkbox" id="show_links" name="show_links" <?php echo $show_links_checked; ?> />
 	</div>
 	
-	<div class="row">
-		<label for="linktitle1">Further Coverage Link 1 Title:</label>
-		<input type="text" id="linktitle1" name="linktitle1" value="<?php echo $linktitle1; ?>" />
-		
-		<label for="link1">Further Coverage Link 1 URL:</label>
-		<input type="text" id="link1" name="link1" value="<?php echo $link1; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle2">Further Coverage Link 2 Title:</label>
-		<input type="text" id="linktitle2" name="linktitle2" value="<?php echo $linktitle2; ?>" />
-		
-		<label for="link2">Further Coverage Link 2 URL:</label>
-		<input type="text" id="link2" name="link2" value="<?php echo $link2; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle3">Further Coverage Link 3 Title:</label>
-		<input type="text" id="linktitle3" name="linktitle3" value="<?php echo $linktitle3; ?>" />
-
-		<label for="link3">Further Coverage Link 3 URL:</label>
-		<input type="text" id="link3" name="link3" value="<?php echo $link3; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle4">Further Coverage Link 4 Title:</label>
-		<input type="text" id="linktitle4" name="linktitle4" value="<?php echo $linktitle4; ?>" />
-		
-		<label for="link4">Further Coverage Link 4 URL:</label>
-		<input type="text" id="link4" name="link4" value="<?php echo $link4; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle5">Further Coverage Link 5 Title:</label>
-		<input type="text" id="linktitle5" name="linktitle5" value="<?php echo $linktitle5; ?>" />
-
-		<label for="link5">Further Coverage Link 5 URL:</label>
-		<input type="text" id="link5" name="link5" value="<?php echo $link5; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle6">Further Coverage Link 6 Title:</label>
-		<input type="text" id="linktitle6" name="linktitle6" value="<?php echo $linktitle6; ?>" />
-
-		<label for="link6">Further Coverage Link 6 URL:</label>
-		<input type="text" id="link6" name="link6" value="<?php echo $link6; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle7">Further Coverage Link 7 Title:</label>
-		<input type="text" id="linktitle7" name="linktitle7" value="<?php echo $linktitle7; ?>" />
-
-		<label for="link7">Further Coverage Link 7 URL:</label>
-		<input type="text" id="link7" name="link7" value="<?php echo $link7; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle8">Further Coverage Link 8 Title:</label>
-		<input type="text" id="linktitle8" name="linktitle8" value="<?php echo $linktitle8; ?>" />
-
-		<label for="link8">Further Coverage Link 8 URL:</label>
-		<input type="text" id="link8" name="link8" value="<?php echo $link8; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle9">Further Coverage Link 9 Title:</label>
-		<input type="text" id="linktitle9" name="linktitle9" value="<?php echo $linktitle9; ?>" />
-
-		<label for="link9">Further Coverage Link 9 URL:</label>
-		<input type="text" id="link9" name="link9" value="<?php echo $link9; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle10">Further Coverage Link 10 Title:</label>
-		<input type="text" id="linktitle10" name="linktitle10" value="<?php echo $linktitle10; ?>" />
-		
-		<label for="link10">Further Coverage Link 10 URL:</label>
-		<input type="text" id="link10" name="link10" value="<?php echo $link10; ?>" />
-	</div>
-
 </div>
 
 <?php
@@ -379,28 +290,12 @@ function campaign_save_extras(){
 		update_post_meta($post->ID, "is_latest", $is_latest);
 		if($_POST["show_vid"]) { $show_vid = 'on'; } else { $show_vid = ''; };
 		update_post_meta($post->ID, "show_vid", $show_vid);
+		if($_POST["show_release_date"]) { $show_release_date = 'on'; } else { $show_release_date = ''; };
+		update_post_meta($post->ID, "show_release_date", $show_release_date);
+		if($_POST["show_channel"]) { $show_channel = 'on'; } else { $show_channel = ''; };
+		update_post_meta($post->ID, "show_channel", $show_channel);
 		if($_POST["show_links"]) { $show_links = 'on'; } else { $show_links = ''; };
 		update_post_meta($post->ID, "show_links", $show_links);
-		update_post_meta($post->ID, "link1", $_POST["link1"]);
-		update_post_meta($post->ID, "link2", $_POST["link2"]);
-		update_post_meta($post->ID, "link3", $_POST["link3"]);
-		update_post_meta($post->ID, "link4", $_POST["link4"]);
-		update_post_meta($post->ID, "link5", $_POST["link5"]);
-		update_post_meta($post->ID, "link6", $_POST["link6"]);
-		update_post_meta($post->ID, "link7", $_POST["link7"]);
-		update_post_meta($post->ID, "link8", $_POST["link8"]);
-		update_post_meta($post->ID, "link9", $_POST["link9"]);
-		update_post_meta($post->ID, "link10", $_POST["link10"]);
-		update_post_meta($post->ID, "linktitle1", $_POST["linktitle1"]);
-		update_post_meta($post->ID, "linktitle2", $_POST["linktitle2"]);
-		update_post_meta($post->ID, "linktitle3", $_POST["linktitle3"]);
-		update_post_meta($post->ID, "linktitle4", $_POST["linktitle4"]);
-		update_post_meta($post->ID, "linktitle5", $_POST["linktitle5"]);
-		update_post_meta($post->ID, "linktitle6", $_POST["linktitle6"]);
-		update_post_meta($post->ID, "linktitle7", $_POST["linktitle7"]);
-		update_post_meta($post->ID, "linktitle8", $_POST["linktitle8"]);
-		update_post_meta($post->ID, "linktitle9", $_POST["linktitle9"]);
-		update_post_meta($post->ID, "linktitle10", $_POST["linktitle10"]);
 
 	}
 }
@@ -449,26 +344,6 @@ function post_links(){
 	$custom = get_post_custom($post->ID);
 
 	$show_links = $custom["show_links"][0];
-	$link1 = isset($custom["link1"][0]) ? $custom["link1"][0] : '';
-	$link2 = isset($custom["link2"][0]) ? $custom["link2"][0] : '';
-	$link3 = isset($custom["link3"][0]) ? $custom["link3"][0] : '';
-	$link4 = isset($custom["link4"][0]) ? $custom["link4"][0] : '';
-	$link5 = isset($custom["link5"][0]) ? $custom["link5"][0] : '';
-	$link6 = isset($custom["link6"][0]) ? $custom["link6"][0] : '';
-	$link7 = isset($custom["link7"][0]) ? $custom["link7"][0] : '';
-	$link8 = isset($custom["link8"][0]) ? $custom["link8"][0] : '';
-	$link9 = isset($custom["link9"][0]) ? $custom["link9"][0] : '';
-	$link10 = isset($custom["link10"][0]) ? $custom["link10"][0] : '';
-	$linktitle1 = isset($custom["linktitle1"][0]) ? $custom["linktitle1"][0] : '';
-	$linktitle2 = isset($custom["linktitle2"][0]) ? $custom["linktitle2"][0] : '';
-	$linktitle3 = isset($custom["linktitle3"][0]) ? $custom["linktitle3"][0] : '';
-	$linktitle4 = isset($custom["linktitle4"][0]) ? $custom["linktitle4"][0] : '';
-	$linktitle5 = isset($custom["linktitle5"][0]) ? $custom["linktitle5"][0] : '';
-	$linktitle6 = isset($custom["linktitle6"][0]) ? $custom["linktitle6"][0] : '';
-	$linktitle7 = isset($custom["linktitle7"][0]) ? $custom["linktitle7"][0] : '';
-	$linktitle8 = isset($custom["linktitle8"][0]) ? $custom["linktitle8"][0] : '';
-	$linktitle9 = isset($custom["linktitle9"][0]) ? $custom["linktitle9"][0] : '';
-	$linktitle10 = isset($custom["linktitle10"][0]) ? $custom["linktitle10"][0] : '';
 		
 ?>
 
@@ -485,85 +360,6 @@ function post_links(){
 	<div class="row clearfix">
 		<label for="show_links" class="checkbox">Show Further Coverage Links?:</label>
 		<input type="checkbox" id="show_links" name="show_links" <?php echo $show_links_checked; ?> />
-	</div>
-	<div class="row">
-		<label for="linktitle1">Further Coverage Link 1 Title:</label>
-		<input type="text" id="linktitle1" name="linktitle1" value="<?php echo $linktitle1; ?>" />
-		
-		<label for="link1">Further Coverage Link 1 URL:</label>
-		<input type="text" id="link1" name="link1" value="<?php echo $link1; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle2">Further Coverage Link 2 Title:</label>
-		<input type="text" id="linktitle2" name="linktitle2" value="<?php echo $linktitle2; ?>" />
-		
-		<label for="link2">Further Coverage Link 2 URL:</label>
-		<input type="text" id="link2" name="link2" value="<?php echo $link2; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle3">Further Coverage Link 3 Title:</label>
-		<input type="text" id="linktitle3" name="linktitle3" value="<?php echo $linktitle3; ?>" />
-
-		<label for="link3">Further Coverage Link 3 URL:</label>
-		<input type="text" id="link3" name="link3" value="<?php echo $link3; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle4">Further Coverage Link 4 Title:</label>
-		<input type="text" id="linktitle4" name="linktitle4" value="<?php echo $linktitle4; ?>" />
-		
-		<label for="link4">Further Coverage Link 4 URL:</label>
-		<input type="text" id="link4" name="link4" value="<?php echo $link4; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle5">Further Coverage Link 5 Title:</label>
-		<input type="text" id="linktitle5" name="linktitle5" value="<?php echo $linktitle5; ?>" />
-
-		<label for="link5">Further Coverage Link 5 URL:</label>
-		<input type="text" id="link5" name="link5" value="<?php echo $link5; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle6">Further Coverage Link 6 Title:</label>
-		<input type="text" id="linktitle6" name="linktitle6" value="<?php echo $linktitle6; ?>" />
-
-		<label for="link6">Further Coverage Link 6 URL:</label>
-		<input type="text" id="link6" name="link6" value="<?php echo $link6; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle7">Further Coverage Link 7 Title:</label>
-		<input type="text" id="linktitle7" name="linktitle7" value="<?php echo $linktitle7; ?>" />
-
-		<label for="link7">Further Coverage Link 7 URL:</label>
-		<input type="text" id="link7" name="link7" value="<?php echo $link7; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle8">Further Coverage Link 8 Title:</label>
-		<input type="text" id="linktitle8" name="linktitle8" value="<?php echo $linktitle8; ?>" />
-
-		<label for="link8">Further Coverage Link 8 URL:</label>
-		<input type="text" id="link8" name="link8" value="<?php echo $link8; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle9">Further Coverage Link 9 Title:</label>
-		<input type="text" id="linktitle9" name="linktitle9" value="<?php echo $linktitle9; ?>" />
-
-		<label for="link9">Further Coverage Link 9 URL:</label>
-		<input type="text" id="link9" name="link9" value="<?php echo $link9; ?>" />
-	</div>
-	
-	<div class="row">
-		<label for="linktitle10">Further Coverage Link 10 Title:</label>
-		<input type="text" id="linktitle10" name="linktitle10" value="<?php echo $linktitle10; ?>" />
-		
-		<label for="link10">Further Coverage Link 10 URL:</label>
-		<input type="text" id="link10" name="link10" value="<?php echo $link10; ?>" />
 	</div>
 
 </div>
@@ -582,26 +378,6 @@ function post_links_save_extras(){
 		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
 		if($_POST["show_links"]) { $show_links = 'on'; } else { $show_links = ''; };
 		update_post_meta($post->ID, "show_links", $show_links);
-		update_post_meta($post->ID, "link1", $_POST["link1"]);
-		update_post_meta($post->ID, "link2", $_POST["link2"]);
-		update_post_meta($post->ID, "link3", $_POST["link3"]);
-		update_post_meta($post->ID, "link4", $_POST["link4"]);
-		update_post_meta($post->ID, "link5", $_POST["link5"]);
-		update_post_meta($post->ID, "link6", $_POST["link6"]);
-		update_post_meta($post->ID, "link7", $_POST["link7"]);
-		update_post_meta($post->ID, "link8", $_POST["link8"]);
-		update_post_meta($post->ID, "link9", $_POST["link9"]);
-		update_post_meta($post->ID, "link10", $_POST["link10"]);
-		update_post_meta($post->ID, "linktitle1", $_POST["linktitle1"]);
-		update_post_meta($post->ID, "linktitle2", $_POST["linktitle2"]);
-		update_post_meta($post->ID, "linktitle3", $_POST["linktitle3"]);
-		update_post_meta($post->ID, "linktitle4", $_POST["linktitle4"]);
-		update_post_meta($post->ID, "linktitle5", $_POST["linktitle5"]);
-		update_post_meta($post->ID, "linktitle6", $_POST["linktitle6"]);
-		update_post_meta($post->ID, "linktitle7", $_POST["linktitle7"]);
-		update_post_meta($post->ID, "linktitle8", $_POST["linktitle8"]);
-		update_post_meta($post->ID, "linktitle9", $_POST["linktitle9"]);
-		update_post_meta($post->ID, "linktitle10", $_POST["linktitle10"]);
 
 	}
 }
@@ -649,90 +425,6 @@ function press_link_save_extras(){
 
 	}
 }
-
-// team members options
-
-/*
-
-function teammember_meta_options(){
-	global $post;
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
-		return $post_id;
-		
-	$custom      = get_post_custom($post->ID);
-	$role     = $custom["role"][0];
-	$branch = $custom["branch"][0];
-	$linkedin_url = $custom["linkedin_url"][0];
-	$twitter_user = $custom["twitter_user"][0];
-	
-?>
-
-
-
-<div class="custom_extras">
-
-<?php
-	$linkedin_url = ($linkedin_url == "") ? "http://" : $linkedin_url;
-?>
-
-	<div><label for="role">Role:</label><input name="role" value="<?php echo $role; ?>" /></div>
-	<div><label for="branch">Branch:</label><input name="branch" value="<?php echo $branch; ?>" /></div>
-	<div><label for="linkedin_url">Linkedin URL:</label><input id="linkedin_url" name="linkedin_url" value="<?php echo $linkedin_url; ?>" /></div>
-	<div><label for="twitter_user">Twitter user:</label><input id="twitter_user" name="twitter_user" value="<?php echo $twitter_user; ?>" /></div>
-</div>
-
-<?php
-
-}
-
-add_action('save_post', 'teammember_save_extras');
-
-function teammember_save_extras(){
-	global $post;
-	
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ){
-		return $post_id;
-	} else {
-		update_post_meta($post->ID, "role", $_POST["role"]);
-		update_post_meta($post->ID, "branch", $_POST["branch"]);
-		update_post_meta($post->ID, "linkedin_url", $_POST["linkedin_url"]);
-		update_post_meta($post->ID, "twitter_user", $_POST["twitter_user"]);
-	}
-}
-
-add_filter("manage_edit-team-members_columns", "teammember_edit_columns");
-
-function teammember_edit_columns($columns){
-	$columns = array(
-		"cb" => "<input type=\"checkbox\" />",
-		"title" => "Name",
-		"role" => "Role",
-		"branch" => "Branch"
-	);
-	return $columns;
-}
-
-add_action("manage_team-members_posts_custom_column", "teammember_custom_columns");
-
-function teammember_custom_columns($column){
-	global $post;
-	$custom = get_post_custom();
-	switch ($column)
-		{
-		case "role":
-			echo $custom["role"][0];
-			break;
-		case "branch":
-			echo $custom["branch"][0];
-			break;
-	}
-}
-
-*/
-
-
-// page top content options
-
 
 function page_topcontent(){
 	global $post;

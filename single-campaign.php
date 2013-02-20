@@ -33,22 +33,24 @@
 	$channel = (isset($custom["channel"][0])) ? $custom["channel"][0] : '';
 	$website_url = (isset($custom["website_url"][0])) ? $custom["website_url"][0] : '';
 	$big_image = get_the_post_thumbnail($post->ID, 'campaign_full');
-	$show_vid = (isset($custom["show_vid"][0])) ? $custom["show_vid"][0] : '';
-	$show_links = (isset($custom["show_links"][0])) ? $custom["show_links"][0] : '';
+	$show_vid = (isset($custom["show_vid"][0])) ? $custom["show_vid"][0] : 'on';
+	$show_release_date = (isset($custom["show_release_date"][0])) ? $custom["show_release_date"][0] : 'on';
+	$show_channel = (isset($custom["show_channel"][0])) ? $custom["show_channel"][0] : 'on';
+	$show_links = (isset($custom["show_links"][0])) ? $custom["show_links"][0] : 'on';
 
 	// if ($case_study_url != '' || $case_study_url != 'http://'){
 	// 	$case_study_url= '<a class="download" href="' . $case_study_url . '" target="_blank">Download this case study <em>(PDF)</em></a>';
 	// } else {
 	// 	$case_study_url= '';
 	// }
-	if($release_date != ''){
+	if($release_date != '' && $show_release_date == 'on'){
 		$release_date  = '<h5 class="post-item">Released ' . $release_date . '</h5>';
 	}
-	if($channel != ''){
+	if(($channel != '') && $show_channel == 'on'){
 		$channel  = '<h5 class="post-item" title="Search '.$channel.' within the Aurasma app"><a title="Follow this Aura" href="'.get_bloginfo('url').'/?s='.$channel.'">Follow this Aura in app: <span class="channel">'.$channel.'</span></a<</h5>';
 	}
 
-	if($website_url != '' && $website_url != 'http://'){
+	if($website_url != '' && $website_url != 'http://' && $show_vid == 'on'){
 		$website_url  = '<li><a href="'. $website_url . '" target="_blank">Watch the Video</a></li>';
 	} else {
 		$website_url = '';
@@ -74,9 +76,7 @@
 	<article class="container campaign">
 
 		<div class="push-eighteen two column alpha omega close">
-			<a class="close-button">
-				Close
-			</a>
+			<a class="close-button">Close</a>
 		</div>		
 
 		<div class="clearfix">
@@ -98,6 +98,7 @@
 						<?php echo($channel); ?>
 						
 							<ul class="foot-links">
+
 								<?php if($show_links == 'on') { ?>
 								<li class="drop">
 									<a href="#">Further Coverage</a>
@@ -114,7 +115,7 @@
 										<?php if($myImageFileName = get_post_meta($post->ID, 'link10', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link10', true);?>"><?php echo get_post_meta($post->ID, 'linktitle10', true);?></a></li><?php } ?>
 									</ul>
 								</li>
-								<?php } ?>
+								
 								<?php if($show_vid == 'on') echo $website_url; ?>
 							</ul>
 						
@@ -141,7 +142,6 @@
 						<a class="app store" href="#" target="_blank">
 							<img src="<?php bloginfo( 'template_url' ); ?>/images/icon_getit_appstore_big.png" alt="Get the App on the App Store" />
 						</a>
-
 					</div>
 				</footer>
 
@@ -176,4 +176,3 @@ if(!isset($_GET['ajax']) || $_GET['ajax'] != "true") {
 } 
 
 ?>
-

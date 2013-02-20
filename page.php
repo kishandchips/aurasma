@@ -11,7 +11,7 @@
  * @since aurasma 1.0
  */
 
-	if(!isset($_GET['ajax']) || $_GET['ajax'] != "true"):
+if(!isset($_GET['ajax']) || $_GET['ajax'] != "true"):
 		get_header(); 
 		global $post; 
 		aurasma_content_top($post->ID);
@@ -22,15 +22,16 @@
 <?php else: ?>
 
 	<div class="container">
-
+		<div class="push-eighteen two column alpha omega close">
+			<a class="close-button">Close</a>
+		</div>
 <?php endif; ?>
-
+		<div class="clearfix">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php the_content(); ?>
 			<?php endwhile; ?>
-
 		</div>
-
+	</div>
 
 <?php 
 

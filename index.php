@@ -17,17 +17,7 @@ get_header();
 
 $page_id = '45'; ?>
 
-
-<section id="top-content" class="red-border">
-	<div class="container">
-
-		<?php 
-			echo do_shortcode(get_post_meta($page_id, 'topcontent_left', true)); 
-			echo do_shortcode(get_post_meta($page_id, 'topcontent_right', true)); 
-		?>
-
-	</div>
-</section>
+<?php aurasma_content_top($page_id); ?>
 
 <div id="main" class="site-main">
 	<div class="container">

@@ -17,12 +17,7 @@ get_header(); ?>
 
 <?php $page_id = '45'; ?>
 
-
-<section id="top-content" class="red-border">
-	<div class="container">
-		<?php aurasma_content_top($page_id); ?>
-	</div>
-</section>
+<?php aurasma_content_top($page_id); ?>
 
 <div id="main" class="site-main">
 	<div class="container">

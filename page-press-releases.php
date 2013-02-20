@@ -1,15 +1,10 @@
 <?php
 	get_header(); 
-	global $post; 
+	global $post;
+	$page_id = '45';
 ?>
 
-<section id="top-content">
-	<div class="container">
-
-		<?php aurasma_content_top($page_id); ?>
-
-	</div>
-</section>
+<?php aurasma_content_top($page_id); ?>
 
 <div id="press-releases">
 	<div id="main">

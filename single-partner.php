@@ -34,16 +34,20 @@
 	$case_study_url = $custom["case_study_url"][0];
 	$youtube_video_id = $custom["youtube_video_id"][0];
 	$logo = get_the_post_thumbnail($post->ID, 'partner_logo');
+	$show_external_url = (isset($custom["show_external_url"][0])) ? $custom["show_external_url"][0] : 'on';
+	$show_case_study_url = (isset($custom["show_case_study_url"][0])) ? $custom["show_case_study_url"][0] : 'on';
+	$show_youtube_video_id = (isset($custom["show_youtube_video_id"][0])) ? $custom["show_youtube_video_id"][0] : 'on';
 
-	if ($external_url != ''){
+
+	if ($external_url != '' && $show_external_url){
 		$external_url= '<a data-url="' . $post->post_name . '" class="external_url" href="' . $external_url . '" target="_blank">View this case study</a>';
 	} 
-	if ($case_study_url != ''){
+	if ($case_study_url != '' && $show_case_study_url){
 		$case_study_url= '<a data-url="' . $post->post_name . '" class="download" href="' . $case_study_url . '" target="_blank">Download this case study <em>(PDF)</em></a>';
 	} else {
 		$case_study_url= "";
 	}
-	if($youtube_video_id != ''){
+	if($youtube_video_id != '' && $show_youtube_video_id){
 		$youtube_video  = '<div class="post-media thirteen column omega">';
 		$youtube_video .= $youtube_video_id;
 		$youtube_video .= '</div>';

@@ -36,14 +36,6 @@
 }
 
 
-.custom_extras label.checkbox {
-	float: left;
-	margin-right: 10px;
-}
-.custom_extras div input[type="checkbox"] {
-	float: left;
-}
-
 .custom_extras .topcontent_left_box,
 .custom_extras .topcontent_right_box {
 	width: 49%;
