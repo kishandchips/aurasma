@@ -1,4 +1,3 @@
-
 <?php
 /**
  * The main template file.
@@ -23,7 +22,6 @@
 
 <?php endif; ?>
 
-
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 <?php
@@ -47,7 +45,7 @@
 		$release_date  = '<h5 class="post-item">Released ' . $release_date . '</h5>';
 	}
 	if(($channel != '') && $show_channel == 'on'){
-		$channel  = '<h5 class="post-item" title="Search '.$channel.' within the Aurasma app"><a title="Follow this Aura" href="'.get_bloginfo('url').'/?s='.$channel.'">Follow this Aura in app: <span class="channel">'.$channel.'</span></a<</h5>';
+		$channel  = '<h5 class="post-item" title="Search '.$channel.' within the Aurasma app"><span>Follow this Aura in app: <span class="channel">'.$channel.'</span></span></h5>';
 	}
 
 	if($website_url != '' && $website_url != 'http://' && $show_vid == 'on'){
@@ -98,24 +96,6 @@
 						<?php echo($channel); ?>
 						
 							<ul class="foot-links">
-
-								<?php if($show_links == 'on') { ?>
-								<li class="drop">
-									<a href="#">Further Coverage</a>
-									<ul>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link1', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link1', true);?>"><?php echo get_post_meta($post->ID, 'linktitle1', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link2', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link2', true);?>"><?php echo get_post_meta($post->ID, 'linktitle2', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link3', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link3', true);?>"><?php echo get_post_meta($post->ID, 'linktitle3', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link4', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link4', true);?>"><?php echo get_post_meta($post->ID, 'linktitle4', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link5', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link5', true);?>"><?php echo get_post_meta($post->ID, 'linktitle5', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link6', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link6', true);?>"><?php echo get_post_meta($post->ID, 'linktitle6', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link7', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link7', true);?>"><?php echo get_post_meta($post->ID, 'linktitle7', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link8', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link8', true);?>"><?php echo get_post_meta($post->ID, 'linktitle8', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link9', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link9', true);?>"><?php echo get_post_meta($post->ID, 'linktitle9', true);?></a></li><?php } ?>
-										<?php if($myImageFileName = get_post_meta($post->ID, 'link10', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link10', true);?>"><?php echo get_post_meta($post->ID, 'linktitle10', true);?></a></li><?php } ?>
-									</ul>
-								</li>
-								
 								<?php if($show_vid == 'on') echo $website_url; ?>
 							</ul>
 						
@@ -173,6 +153,5 @@ endif;
 if(!isset($_GET['ajax']) || $_GET['ajax'] != "true") {
 	echo ('</div>');
 	get_footer(); 
-} 
-
+}
 ?>

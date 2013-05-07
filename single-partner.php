@@ -42,7 +42,7 @@
 	if ($external_url != '' && $show_external_url){
 		$external_url= '<a data-url="' . $post->post_name . '" class="external_url" href="' . $external_url . '" target="_blank">View this case study</a>';
 	} 
-	if ($case_study_url != '' && $show_case_study_url){
+	if ($case_study_url != '' && $case_study_url != 'http://' && $show_case_study_url){
 		$case_study_url= '<a data-url="' . $post->post_name . '" class="download" href="' . $case_study_url . '" target="_blank">Download this case study <em>(PDF)</em></a>';
 	} else {
 		$case_study_url= "";

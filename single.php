@@ -77,26 +77,6 @@ get_header(); ?>
 					
 					<?php the_content(); ?>
 					
-					<?php if($show_links == 'on') { ?>
-					<ul class="foot-links">
-						<li>
-							<a href="#"><h3>Further Coverage</h3></a>
-							<ul>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link1', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link1', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle1', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link2', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link2', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle2', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link3', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link3', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle3', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link4', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link4', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle4', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link5', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link5', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle5', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link6', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link6', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle6', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link7', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link7', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle7', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link8', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link8', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle8', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link9', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link9', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle9', true);?></a></li><?php } ?>
-								<?php if($myImageFileName = get_post_meta($post->ID, 'link10', true)){ ?><li><a href="<?php echo get_post_meta($post->ID, 'link10', true);?>" target="_blank"><?php echo get_post_meta($post->ID, 'linktitle10', true);?></a></li><?php } ?>
-							</ul>
-						</li>
-					</ul>
-					<?php } ?>
-
 				</div>
 
 			</article>
